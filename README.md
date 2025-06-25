@@ -302,13 +302,17 @@ visit(data, (value) => {
 
 ### TypeScript Type Inference Depth
 
-The library uses recursive TypeScript types to infer all possible value types in your data structure. Type inference is limited to approximately **10 levels of nesting**. Beyond this depth:
+The library uses recursive TypeScript types to infer all possible value types in
+your data structure. Type inference is limited to approximately **10 levels of
+nesting**. Beyond this depth:
 
 - Runtime traversal continues to work correctly at any depth
 - TypeScript may not infer the exact types for deeply nested values
-- The visitor function parameter will fall back to `unknown` type for very deep structures
+- The visitor function parameter will fall back to `unknown` type for very deep
+  structures
 
 **Example:**
+
 ```ts
 // Types are fully inferred up to ~10 levels deep
 const deepData = {
@@ -317,15 +321,16 @@ const deepData = {
       level3: {
         // ... up to level10: still typed correctly
         level10: {
-          level11: "deeply nested" // May be typed as 'unknown'
-        }
-      }
-    }
-  }
+          level11: "deeply nested", // May be typed as 'unknown'
+        },
+      },
+    },
+  },
 };
 ```
 
-This limitation only affects TypeScript's static type checking - the runtime behavior remains fully functional at any nesting depth.
+This limitation only affects TypeScript's static type checking - the runtime
+behavior remains fully functional at any nesting depth.
 
 ## Development
 
